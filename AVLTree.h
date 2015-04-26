@@ -44,8 +44,11 @@ class AVLTree : public Drawable
       AVLTreeNode<T>* insertItem(AVLTreeNode<T>* tNode, T* item);
       AVLTreeNode<T>* removeItem(AVLTreeNode<T>* tNode, String* searchKey);
       AVLTreeNode<T>* removeNode(AVLTreeNode<T>* tNode);
-      AVLTreeNode<T>* removeLeftMost(AVLTreeNode<T>* tNode);
-      T* findLeftMost(AVLTreeNode<T>* tNode);
+      AVLTreeNode<T>* removeLeftMost(AVLTreeNode<T>* tNode);		//<<<<=======
+      T* findLeftMost(AVLTreeNode<T>* tNode);						//<<<<=======
+	  AVLTreeNode<T>* removeRightMost(AVLTreeNode<T>* tNode);		//<<<<=======
+	  T* findRightMost(AVLTreeNode<T>* tNode);						//<<<<=======
+
 
       AVLTreeNode<T>* rotateLeft(AVLTreeNode<T>* tNode);
       AVLTreeNode<T>* rotateRight(AVLTreeNode<T>* tNode);
@@ -76,7 +79,7 @@ class AVLTree : public Drawable
 
 	  //The function we were suppose to add. suppose to remove the smalleset or largest itme in the tree
 	  //based on user passed from constructor
-	  T* remove(String* sk);
+	  T* remove();
 
       bool isEmpty();
       void makeEmpty();
@@ -106,6 +109,29 @@ AVLTree<T>::~AVLTree()
    destroy();
 }
 
+/* NOTES!!!
+
+	If min = go right, allow duplicates on right = true, on left = false
+	if max = go left, 
+
+	probz gonna need a leftmost rightmost function.
+			maybe have these? ^^^^
+			findleftmost
+			removeleftmost
+		probably dont have findrightmost or removerightmost. gotta write those //copy paste & change left to right
+	ALWAYS CHECK FOR ROTATIONS AND WHAT NOT.
+
+	remove:
+		if min go left, then check for right children, check for balances and the usual.
+
+
+	insert:
+		duplicates and what not.
+					
+*/
+
+
+
 //NEW STUFF!!!!!!!!!
 //other constructor
 template < class T > 
@@ -117,16 +143,69 @@ AVLTree<T>::AVLTree(bool min_max, bool allow_duplicates, bool duplicates_on_left
 	compare_keys = comp_keys;
 
 	min_or_max = min_max;
-	allow_dups = allow_duplicates;
-	dups_left = duplicates_on_left;
+	allow_duplicates = allow_duplicates;
+	dupplicates_on_left = duplicates_on_left;
 }
 
 template < class T >
-T* AVLTree<T>::remove(String* sk)
+T* AVLTree<T>::remove()
 {
+	T* item;
 
+	if (min_or_max)
+	{
+		item = findLeftMost(root);
+		root = removeLeftMost(root);
+
+	}
+	else
+	{
+		item = findRightMost(root);
+		root = removeRightMost(root);
+	}
+	sze--;
+
+	return item;
 }
 
+template < class T >
+T* AVLTree<T>::findRightMost(AVLTreeNode<T>* tNode)
+{
+	while (tNode->getRight() != NULL)
+	{
+		tNode = tNode->getRight();
+	}
+	
+	return tNode->getItem();
+}
+
+template < class T >
+AVLTreeNode<T>* AVLTree<T>::removeRightMost(AVLTreeNode<T>* tNode)
+{
+	AVLTreeNode<T>* subtree;
+
+	if (tNode->getRight() == NULL)
+	{
+		avlFlag = true;
+		subtree = tNode->getLeft();
+		delete tNode;
+		return subtree;
+	}
+	else
+	{
+		subtree = removeRightMost(tNode->getRight());
+		tNode->setRight(subtree);
+		if (avlFlag)
+		{
+			tNode = avlFixRemoveRight(tNode);  //came from right
+		}
+		return tNode;
+	}
+}
+
+
+
+//OLD STUFFF!!!!!!!!!!!!
 
 template < class T >
 void AVLTree<T>::destroy()
@@ -226,23 +305,51 @@ void AVLTree<T>::insert(T* item)
 template < class T >
 AVLTreeNode<T>* AVLTree<T>::insertItem(AVLTreeNode<T>* tNode, T* item) 
 {
-   if (tNode == NULL) 
-   {
-      tNode = new AVLTreeNode<T>(item);
-      tNode->setBalanceFactor(BALANCED);
-      avlFlag = true; //need to check
-      sze++;
-      return tNode;
-   } 
+	if (tNode == NULL) 
+	{
+		tNode = new AVLTreeNode<T>(item);
+		tNode->setBalanceFactor(BALANCED);	
+		avlFlag = true; //need to check
+		sze++;
+		return tNode;
+	} 
 
-   AVLTreeNode<T>* subtree;
-   T* node_item = tNode->getItem();
-   int comp = (*compare_items) (item, node_item);
+	AVLTreeNode<T>* subtree;
+	AVLTreeNode<T>* left = tNode->getLeft();
+	AVLTreeNode<T>* right = tNode->getRight();
+	T* node_item = tNode->getItem();
+	int comp = (*compare_items) (item, node_item);
 
-   if (comp == 0)
-   {
-      //no duplicate search keys allowed, so do nothing
-      return tNode; 
+	if (comp == 0)
+	{
+		if (allow_duplicates)
+		{
+			if (duplicates_on_left)
+			{
+				subtree = insertItem(left, item);
+				tNode->setLeft(subtree);
+
+				if (avlFlag)  //still need to check
+				{
+					tNode = avlFixAddLeft(tNode);  //came from the left
+				}
+			}
+			else
+			{
+				subtree = insertItem(right, item);
+				tNode->setRight(subtree);
+
+				if (avlFlag)
+				{
+					tNode = avlFixAddRight(tNode);  //came from the right
+				}
+			}
+		}
+		else
+		{
+			//no duplicate search keys allowed, so do nothing
+			return tNode;
+		}
    }
    else if (comp < 0) 
    {
