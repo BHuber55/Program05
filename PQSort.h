@@ -1,4 +1,7 @@
-#include 
+#include "PQAVL.h"
+
+#include <iostream>
+using namespace std;
 
 template < class T >
 class PQSort
@@ -13,7 +16,7 @@ class PQSort
 template < class T >
 static T** PQSort<T>::pqSort(T** items, int num_items, bool min_or_max, int(*compare_item) (T* one, T* two))
 {
-	T** sorted = new = T*[num_items];
+	T** sorted = new T*[num_items];
 
 	for (int i = 0; i < num_items; i++)
 	{

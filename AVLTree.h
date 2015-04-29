@@ -44,6 +44,7 @@ class AVLTree : public Drawable
       AVLTreeNode<T>* insertItem(AVLTreeNode<T>* tNode, T* item);
       AVLTreeNode<T>* removeItem(AVLTreeNode<T>* tNode, String* searchKey);
       AVLTreeNode<T>* removeNode(AVLTreeNode<T>* tNode);
+
       AVLTreeNode<T>* removeLeftMost(AVLTreeNode<T>* tNode);		//<<<<=======
       T* findLeftMost(AVLTreeNode<T>* tNode);						//<<<<=======
 	  AVLTreeNode<T>* removeRightMost(AVLTreeNode<T>* tNode);		//<<<<=======

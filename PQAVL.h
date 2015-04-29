@@ -26,8 +26,7 @@ PQAVLT<T>::PQAVL(bool min_or_max, int(*compare_item) (T* item_1, T* item_2)) //c
 	bool allow_duplicates = true;
 	bool duplicates_on_left = true;
 
-	avl = new AVLTree<T>*(in_max, allow_duplicates, duplicates_on_left, comp_items, comp_keys);
-
+	avl = new AVLTree<T>*(min_or_max, allow_duplicates, duplicates_on_left, comp_items, comp_keys);
 }
 
 template < class T >
@@ -39,7 +38,7 @@ PQAVLT<T>::~PQAVL() //destructor
 template < class T >
 PQAVLT<T>::bool pqIsEmpty()
 {
-	bool empty->avl->isEmpty();
+	bool empty = avl->isEmpty();
 	return empty;
 }
 

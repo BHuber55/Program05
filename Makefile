@@ -1,8 +1,8 @@
 AutomatedMakefile = am
 CC = g++
 
-FILES = AVLTree_Program05.h
-EXECUTABLE = DRIVER
+FILES = AVLTree.h PQSort.h PQAVL.h
+EXECUTABLE = driver.exe
 
 PROJECT_PATH = $(PROJECT_DIR)
 GTK_PATH = /$(DRIVE_LETTER)/MinGW/GTK
@@ -20,5 +20,5 @@ all: Project
 Project: 	$(FILES)
 		$(LINK) $(EXECUTABLE) $(FILES) $(LIBS)
 
-DRIVER.o:	AVLTree_Program05.h
-				$(COMPILE) 	DRIVER.exe
+DRIVER.o:	AVLTree.h PQSort.h PQAVL.h
+				$(COMPILE) 	driver.exe
