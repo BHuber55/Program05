@@ -1,3 +1,6 @@
+#if !defined (PQSORT_H)
+#define PQSORT_H
+
 #include "PQAVL.h"
 
 #include <iostream>
@@ -47,3 +50,5 @@ static void PQSort<T>::_pqSort(T** items, int num_items, bool min_or_max, int(*c
 	}
 
 }
+
+#endif

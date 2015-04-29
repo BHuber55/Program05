@@ -1,3 +1,6 @@
+#if !defined (PQAVL_H)
+#define PQAVL_H
+
 #include "AVLTree.h"
 
 template < class T >
@@ -54,3 +57,5 @@ PQAVLT<T>::T* pqRemove() //removes and returns the smallest or largest item in t
 	T* item = avl->remove();
 	return item;
 }
+
+#endif
