@@ -12,8 +12,22 @@ using CSC2110::String;
 #include <iostream>
 using namespace std;
 
+//CD** could be the sorted or unsorted. It will work regardless. It just displays it.
+void DisplayAll(CD** sorted, int num_items)
+{
+	for (int i = 0; i < num_items; i++)
+	{
+		CD* cd = cds[i];
+		cout << cd->getKey() << ", ";
+	}
+}
+
+
 int main()
 {
+	int compare_item = &CD::compare_item;
+	bool min_or_max = true;
+
 	ListArray<CD>* cds = CD::readCDs("cds.txt");
 	int num_items = cds->size();
 	cout << num_items << endl;
@@ -32,66 +46,52 @@ int main()
 	*/
 
 	//============================================================================================================================
-	CD** cdArr = cds->toArray();
 
-	for (int i = 0; i < cds->size(); i++) {
-		CD* cd = cdArr[i];
-		cd->getKey();
-	}
-	cout << "Before" << endl;
-	cout << "Hit <Enter> to continue...";
+	DisplayAll(cds, num_items);
+	
+	cout << "^^ That is the OG" << endl;
+	cout << "Hit enter to continue:";
 	cin.get();
 	cout << endl << endl;
 
-	CD** sortedArr = PQSort<CD>::pqSort(cdArr, cds->size(), true, &CD::compare_item);
+	CD** sorted = PQSort<CD>::pqSort(cds, num_items, min_or_max, compare_item);
 
-	for (int i = 0; i < cds->size(); i++) {
-		CD* cd = sortedArr[i];
-		cd->getKey();
-	}
-	cout << "After (Ascending)" << endl;
-	cout << "Hit <Enter> to continue...";
+	DisplayAll(sorted, num_items);
+
+	cout << "^^ That is ascending" << endl;
+	cout << "Hit enter to continue:";
 	cin.get();
 	cout << endl << endl;
 
-	for (int i = 0; i < cds->size(); i++) {
-		CD* cd = cdArr[i];
-		cd->getKey();
-	}
-	cout << "OG" << endl;
-	cout << "Hit <Enter> to continue...";
+	DisplayAll(cds, num_items);
+
+	cout << "^^ That is the OG" << endl;
+	cout << "Hit enter to continue:";
 	cin.get();
 	cout << endl << endl;
 
-	sortedArr = PQSort<CD>::pqSort(cdArr, cds->size(), false, &CD::compare_item);
+	//bool is now false
+	min_or_max = false;
+	sorted = PQSort<CD>::pqSort(cds, num_items, min_or_max, compare_item);
 
-	for (int i = 0; i < cds->size(); i++) {
-		CD* cd = sortedArr[i];
-		cd->getkey();
-	}
-	cout << "After (Descending)" << endl;
-	cout << "Hit <Enter> to continue...";
+	DisplayAll(sorted, num_items);
+
+	cout << "^^ That is descending" << endl;
+	cout << "Hit enter to continue:";
 	cin.get();
 	cout << endl << endl;
 
-	for (int i = 0; i < 5; i++) {
-		cds->add(sortedArr[0]);
-	}
-	cdArr = cds->toArray();
+	//with min max being true this time.
+	min_or_max = true;
+	sorted = PQSort<CD>::pqSort(cds, num_items, min_or_max, compare_item);
 
-	sortedArr = PQSort<CD>::pqSort(cdArr, cds->size(), true, &CD::compare_item);
+	DisplayAll(sorted, num_items);
 
-	for (int i = 0; i < cds->size(); i++) {
-		CD* cd = sortedArr[i];
-		cd->getKey();
-	}
-	cout << "After (Ascending with Duplicates)" << endl;
-	cout << "Hit <Enter> to continue...";
-	cin.get();
-	cout << endl << endl;
+	cout << "^^ That is ascending with duplicates" << endl;
 
-	delete[] cdArr;
-	delete[] sortedArr;
+
+	delete[] cds;
+	delete[] sorte;
 
 	delete cds;
 
