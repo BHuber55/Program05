@@ -20,7 +20,7 @@ class PQAVL
 
 		AVLTree<T>* avl;
 
-	public:
+	public: 
 		//Pre:  Must pass non-null values
 		//Post: 
 		PQAVL(bool min_or_max, int(*compare_item) (T* item_1, T* item_2));

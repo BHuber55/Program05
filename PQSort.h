@@ -16,7 +16,7 @@ using namespace std;
 
 
 template < class T >
-class PQSort
+class PQSort 
 {
 	private:
 		//Pre:  Must pass non-null values, what is passed in should be a copy of the original array.
