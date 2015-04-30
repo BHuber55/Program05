@@ -20,5 +20,5 @@ all: Project
 Project: 	$(FILES)
 		$(LINK) $(EXECUTABLE) $(FILES) $(LIBS)
 
-DRIVER.o:	AVLTree.h PQSort.h PQAVL.h
+driver.o:	AVLTree.h PQSort.h PQAVL.h
 				$(COMPILE) 	driver.exe

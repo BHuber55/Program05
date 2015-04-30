@@ -31,21 +31,6 @@ int main()
 	ListArray<CD>* cds = CD::readCDs("cds.txt");
 	int num_items = cds->size();
 	cout << num_items << endl;
-	/*
-	ListArrayIterator<CD>* iter = avl->iterator();
-	int count = 0;
-	while (iter->hasNext())
-	{
-		CD* cd = iter->next();
-		cds[count] = cd;
-		count++;
-
-		cout << cd->getKey() << ", " << endl;
-	}
-	delete iter;
-	*/
-
-	//============================================================================================================================
 
 	DisplayAll(cds, num_items);
 	
@@ -91,8 +76,7 @@ int main()
 
 
 	delete[] cds;
-	delete[] sorte;
-
+	delete[] sorted;
 	delete cds;
 
 	return 0;
