@@ -17,7 +17,7 @@ void DisplayAll(CD** sorted, int num_items)
 {
 	for (int i = 0; i < num_items; i++)
 	{
-		CD* cd = cds[i];
+		CD* cd = sorted[i];
 		cout << cd->getKey() << ", ";
 	}
 }
@@ -33,7 +33,6 @@ int main()
 	cout << num_items << endl;
 
 	DisplayAll(cds, num_items);
-	
 	cout << "^^ That is the OG" << endl;
 	cout << "Hit enter to continue:";
 	cin.get();
@@ -42,14 +41,12 @@ int main()
 	CD** sorted = PQSort<CD>::pqSort(cds, num_items, min_or_max, compare_item);
 
 	DisplayAll(sorted, num_items);
-
 	cout << "^^ That is ascending" << endl;
 	cout << "Hit enter to continue:";
 	cin.get();
 	cout << endl << endl;
 
 	DisplayAll(cds, num_items);
-
 	cout << "^^ That is the OG" << endl;
 	cout << "Hit enter to continue:";
 	cin.get();
@@ -60,7 +57,6 @@ int main()
 	sorted = PQSort<CD>::pqSort(cds, num_items, min_or_max, compare_item);
 
 	DisplayAll(sorted, num_items);
-
 	cout << "^^ That is descending" << endl;
 	cout << "Hit enter to continue:";
 	cin.get();
@@ -71,7 +67,6 @@ int main()
 	sorted = PQSort<CD>::pqSort(cds, num_items, min_or_max, compare_item);
 
 	DisplayAll(sorted, num_items);
-
 	cout << "^^ That is ascending with duplicates" << endl;
 
 
