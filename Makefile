@@ -3,7 +3,7 @@ CC = g++
 
 FILES = AVLTree.h PQSort.h PQAVL.h
 EXECUTABLE = driver.exe
-
+ 
 PROJECT_PATH = $(PROJECT_DIR)
 GTK_PATH = /$(DRIVE_LETTER)/MinGW/GTK
 GTKMM3_PATH = /$(DRIVE_LETTER)/MinGW/gtkmm3
