@@ -3,9 +3,6 @@
 
 #include "PQAVL.h"
 
-
-
-//===========================functions are suppose to be static
 #include <iostream>
 using namespace std;
 
@@ -13,7 +10,7 @@ using namespace std;
 
 /*
 PQSort overview:
-Class that sorts items using a priority queue by means of an avl tree.
+	Class that sorts items using a priority queue.
 */
 
 
@@ -27,7 +24,7 @@ class PQSort
 		static void _pqSort(T** items, int num_items, bool min_or_max, int(*compare_item) (T* one, T* two));
 	public:
 		//Pre:  Must pass non-null values, the array that is passed in will not be modifed.
-		//Post: Returns a new sorted version of the array thatwas passed in, did not modify the original array passed in.
+		//Post: Returns a new sorted version of the array that was passed in, did not modify the original array passed in.
 		static T** pqSort(T** items, int num_items, bool min_or_max, int(*compare_item) (T* one, T* two));
 };
 

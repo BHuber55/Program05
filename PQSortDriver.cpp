@@ -32,7 +32,6 @@ int main()
 	int count = 0;
 	CD** sorted;
 	bool min_or_max = true;
-	bool allow_duplicates = false;
 
 	//write the iterator
 	ListArray<CD>* list = CD::readCDs("cds.txt");
@@ -76,7 +75,6 @@ int main()
 
 	//with min max being true this time.
 	min_or_max = true;
-	allow_duplicates = true;
 	sorted = PQSort<CD>::pqSort(cds, num_items, min_or_max, &CD::compare_items);
 
 	DisplayAll(sorted, num_items);
