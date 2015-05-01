@@ -17,7 +17,6 @@ template < class T >
 class PQAVL
 {
 	private: 
-
 		AVLTree<T>* avl;
 
 	public: 
@@ -39,23 +38,24 @@ class PQAVL
 };
 
 template < class T >
-PQAVLT<T>::PQAVL(bool min_or_max, int(*compare_item) (T* item_1, T* item_2)) //constructor
+PQAVL<T>::PQAVL(bool min_or_max, int(*compare_item) (T* item_1, T* item_2)) //constructor
 {
-	bool allow_duplicates = true;
 	bool duplicates_on_left = true;
+	bool allow_duplicates = true;
+
 	//the actual constructor.
-	avl = new AVLTree<T>*(min_or_max, allow_duplicates, duplicates_on_left, comp_items, comp_keys);
+	avl = new AVLTree<T>(min_or_max, allow_duplicates, duplicates_on_left, compare_item);
 }
 
 template < class T >
-PQAVLT<T>::~PQAVL() //destructor
+PQAVL<T>::~PQAVL() //destructor
 {
 	//deletes the avl tree.
 	delete avl;
 }
 
 template < class T >
-PQAVLT<T>::bool pqIsEmpty()
+bool PQAVL<T>::pqIsEmpty()
 {
 	//Delegates to AVLTree, if the tree is empty, will return true, else will return false.
 	bool empty = avl->isEmpty();
@@ -63,14 +63,14 @@ PQAVLT<T>::bool pqIsEmpty()
 }
 
 template < class T >
-PQAVLT<T>::void pqInsert(T* item)
+void PQAVL<T>::pqInsert(T* item)
 {
 	//delegates to AVLTree to insert the item.
 	avl->insert(item);
 }
 
 template < class T >
-PQAVLT<T>::T* pqRemove()
+T* PQAVL<T>::pqRemove()
 {
 	//removes and returns the smallest or largest item in the priority queue
 	//also delegates to AVLTree to remove an item.
