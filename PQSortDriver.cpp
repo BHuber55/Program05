@@ -51,7 +51,7 @@ int main()
 
 
 	DisplayAll(cds, num_items);
-	cout << endl << endl << "^^ That is the OG" << endl;
+	cout << endl << endl << "^^ That is the oringina list" << endl;
 	cout << "Hit enter to continue:";
 	cin.get();
 	cout << endl << endl;

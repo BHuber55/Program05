@@ -21,15 +21,16 @@ Class that sorts items using a priority queue by means of an avl tree.
 template < class T >
 class PQSort
 {
-private:
-	//Pre:  Must pass non-null values, what is passed in should be a copy of the original array.
-	//Post: modifies the sorted version of the array that was passed in.
-	static void _pqSort(T** items, int num_items, bool min_or_max, int(*compare_item) (T* one, T* two));
-public:
-	//Pre:  Must pass non-null values, the array that is passed in will not be modifed.
-	//Post: Returns a new sorted version of the array thatwas passed in, did not modify the original array passed in.
-	static T** pqSort(T** items, int num_items, bool min_or_max, int(*compare_item) (T* one, T* two));
+	private:
+		//Pre:  Must pass non-null values, what is passed in should be a copy of the original array.
+		//Post: modifies the sorted version of the array that was passed in.
+		static void _pqSort(T** items, int num_items, bool min_or_max, int(*compare_item) (T* one, T* two));
+	public:
+		//Pre:  Must pass non-null values, the array that is passed in will not be modifed.
+		//Post: Returns a new sorted version of the array thatwas passed in, did not modify the original array passed in.
+		static T** pqSort(T** items, int num_items, bool min_or_max, int(*compare_item) (T* one, T* two));
 };
+
 template < class T >
 T** PQSort<T>::pqSort(T** items, int num_items, bool min_or_max, int(*compare_item) (T* one, T* two))
 {

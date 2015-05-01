@@ -5,6 +5,13 @@
 
 
 /*
+	if allow duplicates is true, then that part works great, however it always allows duplicates,
+	if allow duplicates is false, then the asending and decending part works great, however the part where it is suppose to allow it messes up at the end.
+*/
+
+
+
+/*
 	PQAVL Overview:
 		This classes is a priority queue using an AVL Tree. 
 		This will allow duplicates, and will pull the greatest and least
@@ -24,12 +31,12 @@ class PQAVL
 		//Post: 
 		PQAVL(bool min_or_max, int(*compare_item) (T* item_1, T* item_2));
 		//Pre:  No pre-conditions.
-		//Post: Deletees the AVL tree.
+		//Post: Deletes the AVL tree.
 		~PQAVL();
 		//Pre:  No pre-conditions.
 		//Post: Returns true if the priority queue is empty, else will return false.
 		bool pqIsEmpty();
-		//Pre:  Must pass non-null value.
+		//Pre:  Must pass non-null value to be inserted.
 		//Post: Adds the item to the priority queue AVL tree.
 		void pqInsert(T* item);
 		//Pre:  No pre-conditions.
