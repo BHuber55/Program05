@@ -2,6 +2,7 @@
 #define AVLTREEITERATOR_H
 
 #include "QueueLinked.h"
+using CSC2110::QueueLinked;
 #include "AVLTreeNode.h"
 
 template < class T >

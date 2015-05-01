@@ -1,7 +1,7 @@
 AutomatedMakefile = am
 CC = g++
 
-FILES = AVLTree.h PQSort.h PQAVL.h
+FILES = PQSortDriver.o
 EXECUTABLE = driver.exe
  
 PROJECT_PATH = $(PROJECT_DIR)
@@ -20,5 +20,5 @@ all: Project
 Project: 	$(FILES)
 		$(LINK) $(EXECUTABLE) $(FILES) $(LIBS)
 
-driver.o:	AVLTree.h PQSort.h PQAVL.h
-				$(COMPILE) 	driver.exe
+PQSortDriver.o:	PQSortDriver.cpp AVLTree.h PQSort.h PQAVL.h
+				$(COMPILE) 	PQSortDriver.cpp

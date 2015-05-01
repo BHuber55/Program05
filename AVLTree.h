@@ -8,7 +8,6 @@
 #include "Drawable.h"
 #include "AVLTreeIterator.h"
 #include "Line.h"
-
 #include "Text.h"
 using CSC2110::String;
 
@@ -18,7 +17,7 @@ using namespace std;
 template < class T >
 class AVLTree : public Drawable
 {
-   
+
    private:
       AVLTreeNode<T>* root;
 
@@ -26,9 +25,9 @@ class AVLTree : public Drawable
       int sze;
 
 	  //stuff for new constructor
-	  bool min_max;
+	  bool min_or_max;
 	  bool allow_duplicates;
-	  bool duplicates_on_left
+	  bool duplicates_on_left;
 
       int (*compare_items) (T* item_1, T* item_2);
       int (*compare_keys) (String* key, T* item);
@@ -71,7 +70,7 @@ class AVLTree : public Drawable
       ~AVLTree();
 
 	  //new constructor
-	  AVLTree(bool min_max, bool allow_duplicates, bool duplicates_on_left, int(*comp_items) (T* item_1, T* item_2), int(*comp_keys) (String* key, T* item));
+	  AVLTree(bool min_max, bool allow_duplicates, bool duplicates_on_left, int(*comp_items) (T* item_1, T* item_2));
 
       int size();
       void insert(T* item);
@@ -136,16 +135,16 @@ AVLTree<T>::~AVLTree()
 //NEW STUFF!!!!!!!!!
 //other constructor
 template < class T > 
-AVLTree<T>::AVLTree(bool min_max, bool allow_duplicates, bool duplicates_on_left, int(*comp_items) (T* item_1, T* item_2), int(*comp_keys) (String* key, T* item))
+AVLTree<T>::AVLTree(bool min_max, bool allow_duplicates, bool duplicates_on_left, int(*comp_items) (T* item_1, T* item_2))
 {
 	root = NULL;
 	sze = 0;
 	compare_items = comp_items;
-	compare_keys = comp_keys;
+	//compare_keys = comp_keys;
 
 	min_or_max = min_max;
 	allow_duplicates = allow_duplicates;
-	dupplicates_on_left = duplicates_on_left;
+	duplicates_on_left = duplicates_on_left;
 }
 
 template < class T >

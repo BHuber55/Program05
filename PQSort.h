@@ -3,6 +3,9 @@
 
 #include "PQAVL.h"
 
+
+
+//===========================functions are suppose to be static
 #include <iostream>
 using namespace std;
 
@@ -28,7 +31,7 @@ class PQSort
 		static T** pqSort(T** items, int num_items, bool min_or_max, int(*compare_item) (T* one, T* two));
 };
 template < class T >
-static T** PQSort<T>::pqSort(T** items, int num_items, bool min_or_max, int(*compare_item) (T* one, T* two))
+T** PQSort<T>::pqSort(T** items, int num_items, bool min_or_max, int(*compare_item) (T* one, T* two))
 {
 	//create a new array that is of size num_items.
 	T** sorted = new T*[num_items];
@@ -40,14 +43,14 @@ static T** PQSort<T>::pqSort(T** items, int num_items, bool min_or_max, int(*com
 	}
 
 	//make a call to the private function.
-	_pqSort(sorted, num_items, min_or_max, compare_items);
+	_pqSort(sorted, num_items, min_or_max, compare_item);
 
 	//return the newly sorted array.
 	return sorted;
 }
 
 template < class T >
-static void PQSort<T>::_pqSort(T** items, int num_items, bool min_or_max, int(*compare_item) (T* one, T* two))
+void PQSort<T>::_pqSort(T** items, int num_items, bool min_or_max, int(*compare_items) (T* one, T* two))
 {
 	int count = 0;
 
@@ -57,13 +60,13 @@ static void PQSort<T>::_pqSort(T** items, int num_items, bool min_or_max, int(*c
 	//Inserting the items.
 	for (int i = 0; i < num_items; i++)
 	{
-		pqavl->insert(items[i]);
+		pqavl->pqInsert(items[i]);
 	}
 	
 	//then will remove the items and place them back into the array.
-	while (!pqavl->isEmpty())
+	while (!pqavl->pqIsEmpty())
 	{
-		items[count] = pqavl->remove();
+		items[count] = pqavl->pqRemove();
 		count++;
 	}
 
